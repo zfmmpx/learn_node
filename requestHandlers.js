@@ -5,7 +5,9 @@ const start = () => {
   let content = 'empty'
   console.log('content:', content)
 
-  exec('find /', (error, stdout, stderr) => {
+  exec('dir', (error, stdout, stderr, ...rest) => {
+    console.log('rest:', rest)
+    console.log('stdout:', stdout)
     content = stdout
   })
 
