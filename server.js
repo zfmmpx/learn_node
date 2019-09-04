@@ -9,7 +9,6 @@ const start = (route, handle) => {
 
     response.writeHead(200, { 'Content-type': 'text/plain' })
     const content = route(handle, pathname)
-    console.log('content112:', content)
     response.write(content || 'unde')
     response.end()
   }
