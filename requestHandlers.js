@@ -1,16 +1,23 @@
 const exec = require('child_process').exec
 
-const start = () => {
-  let content = 'empty'
+const start = (response) => {
+  console.log('Request handler "start" was called.')
 
-  exec('dir', (error, stdout, stderr) => content = stdout)
-
-  return content
+  exec('find /c "abc"', (error, stdout, stderr) => {
+    console.log('error:', error)
+    console.log('stdout:', stdout)
+    console.log('stderr:', stderr)
+    response.writeHead(200, {'Content-Type': 'text/plain'})
+    response.write(stdout)
+    response.end()
+  })
 }
 
-const upload = () => {
+const upload = (response) => {
   console.log('Request handler "upload" was called.')
-  return 'Hello Upload'
+  response.writeHead(200, {'Content-Type': 'text/plain'})
+  response.write('Hello Upload')
+  response.end()
 }
 
 exports.start = start
