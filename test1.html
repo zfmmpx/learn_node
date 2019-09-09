@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test</title>
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        zoom: 1;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+      .outer {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        background: #ccc;
+      }
+      .inner {
+        width: 100px;
+        height: 100px;
+        background: #333;
+      }
+      .x {
+        width: 100%;
+        height: 1000px;
+      }
+    </style>
+    <script src="./jquery-1.11.2.js"></script>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner"></div>
+    </div>
+
+    <div class="xxx">xxx</div>
+  </body>
+  <script type="text/javascript">
+    const time = timeout => {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          console.log('yyy');
+          const aaa = () => {
+            let b = 0;
+            console.time('aaa');
+            while (b < 100000) {
+              console.warn(b);
+              b += 1;
+            }
+            console.timeEnd('aaa');
+            console.log('b:', b);
+          };
+          aaa();
+          resolve();
+          console.info(111);
+        }, timeout);
+      });
+    };
+
+    const asyncFunc = async () => {
+      console.info('xxx');
+      await time(5000);
+      console.info(222);
+      return 'aaab';
+    };
+
+    $('.xxx').click(function() {
+      asyncFunc();
+    });
+
+    $('.outer').click(function() {
+      console.info('dragon');
+    });
+  </script>
+</html>
