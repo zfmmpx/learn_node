@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @keyframes my-animation {
+        from {
+          opacity: 0;
+          left: -500px;
+        }
+        to {
+          opacity: 1;
+          left: 0;
+        }
+      }
+
+      .anime {
+        animation-duration: 2s;
+      }
+      .run-animation {
+        position: relative;
+        animation-name: my-animation;
+      }
+
+      #logo {
+        text-align: center;
+        font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="logo" class="anime">
+      Fancy Text (click to restart)
+    </h1>
+    <p>Some other text</p>
+    <script>
+      // This changes everything
+      'use strict'
+
+      // retrieve the element
+      var element = document.getElementById('logo')
+
+      element.classList.add('run-animation')
+
+      // reset the transition by...
+      element.addEventListener(
+        'click',
+        function(e) {
+          // TODO: retrigger the animation
+          element.classList.remove('run-animation')
+          setTimeout(() => {
+            element.classList.add('run-animation')
+          }, 0);
+        },
+        false,
+      )
+    </script>
+  </body>
+</html>
